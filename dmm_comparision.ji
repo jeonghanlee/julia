@@ -1,0 +1,35 @@
+using Plots;
+vr=range(0,10, length=21)
+
+function accuracyf(x,a,b,range)
+  reading_accuracy = a*x
+  range_accuracy = b*range
+  return reading_accuracy + range_accuracy
+end
+
+
+f1(v)=accuracyf(v,2,0.7,10)
+f2(v)=(9*v+1.2*10)
+f3(v)=(14*v+1.2*10)
+f4(v)=(22*v+1.2*10)
+
+g1(v)=(3.2*v+0.35*20)
+g2(v)=(8*v+0.4*20)
+g3(v)=(12*v+0.4*20)
+g4(v)=(16*v+0.4*20)
+
+label_a = "Voltage (V)"
+label_b = "Accuracy (µV)"
+label_c = "Accuracy (µA)"
+devices =["K7510" "K2002"]
+
+a_24h=plot([f1,g1], vr, label=devices, lw=2, legend=:bottomright, xlabel=label_a, ylabel=label_b, title="24 h")
+annotate!(5, (f1(5)+g1(5))*0.5, Plots.text((f1(5),g1(5))))
+annotate!(10, (f1(10)+g1(10))*0.5, Plots.text((f1(10),g1(10)), :right))
+a_90d=plot([f2,g2], vr, label=devices, lw=2, legend=:bottomright, xlabel=label_a, ylabel=label_b, title="90 d")
+
+function accuracyf(x,a,b,range)
+  reading_accuracy = a*x
+  range_accuracy = b*range
+  return reading_accuracy + range_accuracy
+end
